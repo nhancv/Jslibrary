@@ -1,0 +1,71 @@
+<html>
+<head>
+    <script type="text/javascript" src="js/loader.js"></script>
+    <!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript">
+
+        var orgUnitArr = ["NMyXnDEhScT", "XDpbaCd3w9w"];
+        var detailArr = [];
+        var titleArr = [];
+        var chartData = [];
+        function drawVisualization() {
+            // Some raw data (not necessarily accurate)
+            var data = google.visualization.arrayToDataTable(chartData);
+
+            var options = {
+                title: 'Monthly Coffee Production by Country',
+                vAxis: {title: 'Cups'},
+                hAxis: {title: 'Month'},
+                seriesType: 'bars'
+//                series: {3: {type: 'line'}}
+            };
+
+            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+        $.getJSON("localdb/data", function (data) {
+            for (var i = 0; i < data.length; i += orgUnitArr.length) {
+                titleArr.push(data[i][0]);
+            }
+
+            for (var i = 0; i < orgUnitArr.length; i++) {
+                var org = orgUnitArr[i];
+                var item = [];
+                for (var j = 0; j < data.length; j++) {
+                    if (org == data[j][1]) {
+                        item.push(data[j][2]);
+                    }
+                }
+                detailArr.push(item);
+            }
+            console.log(detailArr);
+
+            var itemChart = [];
+            itemChart.push("Org");
+            for (var i = 0; i < titleArr.length; i++) {
+                itemChart.push(titleArr[i]);
+            }
+            chartData.push(itemChart);
+            for (var i = 0; i < orgUnitArr.length; i++) {
+                var itemChart = [];
+                itemChart.push(orgUnitArr[i]);
+                for (var j = 0; j < detailArr[i].length; j++) {
+                    itemChart.push(Number(detailArr[i][j]));
+
+                }
+                chartData.push(itemChart);
+            }
+            console.log(chartData);
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawVisualization);
+
+        });
+
+    </script>
+</head>
+<body>
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+</body>
+</html>

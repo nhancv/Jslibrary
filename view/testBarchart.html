@@ -1,0 +1,128 @@
+<html>
+<head>
+    <link rel="stylesheet" href="http://dhis2-cdn.org/v220/ext/resources/css/ext-plugin-gray.css" />
+    <script src="http://dhis2-cdn.org/v220/ext/ext-all.js"></script>
+    <script src="http://dhis2-cdn.org/v220/plugin/chart.js"></script>
+</head>
+
+<body>
+<div id="chart1" style="width:700px; height:400px"></div>
+
+<script>
+
+    Ext.onReady(function() {
+
+        DHIS.getChart({
+            "type": "bar",
+            "columns": [
+                {
+                    "dimension": "lT9WQw2LHop",
+                    "items": [
+                        {
+                            "id": "fFnNDyEkNz6"
+                        },
+                        {
+                            "id": "h8HlxZn573U"
+                        },
+                        {
+                            "id": "wgVjkDBVj4l"
+                        },
+                        {
+                            "id": "C7XzXeN2Mc9"
+                        },
+                        {
+                            "id": "UBC6k9YZ1zi"
+                        },
+                        {
+                            "id": "OQ65G4ZbBbn"
+                        },
+                        {
+                            "id": "Fr7go5LWeoB"
+                        },
+                        {
+                            "id": "cvCJRmZVMkS"
+                        },
+                        {
+                            "id": "YyAzzVa852v"
+                        },
+                        {
+                            "id": "WijL9Itedve"
+                        },
+                        {
+                            "id": "xZfBjavRY6d"
+                        },
+                        {
+                            "id": "UIrtGG33ypT"
+                        },
+                        {
+                            "id": "iPCV9oAQmQe"
+                        },
+                        {
+                            "id": "vVxIsUkQl0U"
+                        },
+                        {
+                            "id": "qjWxYpfnjc3"
+                        },
+                        {
+                            "id": "bIDKhTuFpxo"
+                        }
+                    ]
+                }
+            ],
+            "rows": [
+                {
+                    "dimension": "dx",
+                    "items": [
+                        {
+                            "id": "jFMC0jLBLIg"
+                        },
+                        {
+                            "id": "sFE1DIdi6CE"
+                        },
+                        {
+                            "id": "t9oslJqL8gl"
+                        }
+                    ]
+                }
+            ],
+            "filters": [
+                {
+                    "dimension": "pe",
+                    "items": [
+                        {
+                            "id": "201310"
+                        },
+                        {
+                            "id": "THIS_WEEK"
+                        },
+                        {
+                            "id": "THIS_QUARTER"
+                        },
+                        {
+                            "id": "THIS_MONTH"
+                        },
+                        {
+                            "id": "LAST_2_SIXMONTHS"
+                        }
+                    ]
+                },
+                {
+                    "dimension": "ou",
+                    "items": [
+                        {
+                            "id": "USER_ORGUNIT"
+                        }
+                    ]
+                }
+            ],
+            "sortOrder": 0,
+            "url": "http://localhost:8080/dhis",
+            "el": "chart1"
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

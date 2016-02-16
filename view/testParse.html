@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/jquery.js"></script>
+<script type="text/javascript">
+
+    const de = [
+        item = new DataElement("bpBUOvqy1Jn", "BCG", "BCG"); de.add(item);
+        item = new DataElement("EMcT5j5zR81", "BCG", "BCG scar"); de.add(item);
+        item = new DataElement("KRF40x6EILp", "BCG", "BCG repeat dose"); de.add(item);
+        item = new DataElement("no7SkAxepi7", "OPV", "OPV 0"); de.add(item);
+        item = new DataElement("CfPM8lsEMzH", "OPV", "OPV 1"); de.add(item);
+        item = new DataElement("K3TcJM1ySQA", "DPT", "DPT-HepB-Hib1"); de.add(item);
+        item = new DataElement("fmXCCPENnwR", "PCV", "PCV 1"); de.add(item);
+        item = new DataElement("nIqQYeSwU9E", "RV", "RV 1"); de.add(item);
+        item = new DataElement("sDORmAKh32v", "OPV", "OPV 2"); de.add(item);
+        item = new DataElement("PvHUllrtPiy", "PCV", "PCV 2"); de.add(item);
+        item = new DataElement("wYg2gOWSyJG", "RV", "RV 2"); de.add(item);
+        item = new DataElement("nQeUfqPjK5o", "OPV", "OPV 3"); de.add(item);
+        item = new DataElement("pxCZNoqDVJC", "DPT", "DPT-HepB-Hib3"); de.add(item);
+        item = new DataElement("B4eJCy6LFLZ", "PCV", "PCV 3"); de.add(item);
+        item = new DataElement("cNA9EmFaiAa", "OPV", "OPV 4"); de.add(item);
+        item = new DataElement("g8dMiUOTFla", "Measles", "Measles 1"); de.add(item);
+        item = new DataElement("Bxh1xgIY9nA", "Measles", "Measles 2"); de.add(item);
+    ];
+
+    var str = "";
+    for (var i = 0; i < de.length; i++) {
+        str+=('item = new DataElement("' + de[i].id + '"', '"' + de[i].groupby + '"', '"' + de[i].name + '");\nde.add(item);\n');
+    }
+    console.log(str);
+
+</script>
+</body>
+</html>
