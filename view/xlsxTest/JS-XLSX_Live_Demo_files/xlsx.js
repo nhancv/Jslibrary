@@ -11588,10 +11588,10 @@ function sheet_to_csv(sheet, opts) {
 				txt = "\"" + txt.replace(qreg, '""') + "\""; break; }
 			row += (C === r.s.c ? "" : FS) + txt;
 		}
-		out += row + RS;
+		//out += row + RS;
 	}
-	console.log(R + " rows x " + C + " columns");
-	return out;
+	//return out;
+	return R + " rows x " + C + " columns";
 }
 var make_csv = sheet_to_csv;
 
