@@ -3,30 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="exceljs/excel.js"></script>
+    <script src="bundle.js"></script>
 </head>
 <body>
 <script>
-    var Excel = require("exceljs/excel.js");
-    var workbook = new Excel.Workbook();
-    workbook.creator = "Me";
-    workbook.lastModifiedBy = "Her";
-    workbook.created = new Date(1985, 8, 30);
-    workbook.modified = new Date();
-    var sheet = workbook.addWorksheet("My Sheet");
-    var sheet = workbook.addWorksheet("My Sheet", "FFC0000");
 
-    var worksheet = workbook.getWorksheet("My Sheet");
-    worksheet.columns = [
-        { header: "Id", key: "id", width: 10 },
-        { header: "Name", key: "name", width: 32 },
-        { header: "D.O.B.", key: "DOB", width: 10 }
-    ];
-
-    // Access an individual columns by key, letter and 1-based column number
-    var idCol = worksheet.getColumn("id");
-    var nameCol = worksheet.getColumn("B");
-    var dobCol = worksheet.getColumn(3);
 </script>
 </body>
 </html>
