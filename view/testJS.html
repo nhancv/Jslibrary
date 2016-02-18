@@ -2,16 +2,24 @@
 <head>
     <script src="js/jquery.js"></script>
     <script type="text/javascript">
-
-        var obj=createNewObject("abc", 111);
-        console.log(obj);
-
-        function createNewObject(key, value){
-            var obj = {};
-            obj[key] = value;
-            return obj;
+        calcLastSixMonths(2015, 1);
+        //        ;201501;201412;201411;201410;201409;201408
+        function formatNum2digit(num) {
+            return ("0" + num).slice(-2);
         }
-
+        function calcLastSixMonths(yearId, monthId) {
+            var result = [];
+            var strPeriod="";
+            var d = new Date(yearId, monthId);
+            for (var i = 0; i < 6; i++) {
+                d.setMonth(d.getMonth() - 1);
+                result.push(d.getFullYear() + '' + formatNum2digit(d.getMonth()+1));
+            }
+            for (var i = 0; i < result.length; i++) {
+                strPeriod+=";"+result[i];
+            }
+            console.log(strPeriod);
+        }
     </script>
 </head>
 <body>
