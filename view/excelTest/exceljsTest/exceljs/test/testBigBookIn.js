@@ -21,7 +21,7 @@ if (process.argv[2] == 'help') {
 }
 
 //var filename = process.argv[2];
-var filename = "../../../testcase/case6-1kx2k.xlsx";
+var filename = "../../../testcase/case8-2kx2k.xlsx";
 var reader = process.argv.length > 3 ? process.argv[3] : "stream";
 var plan = process.argv.length > 4 ? process.argv[4] : "one";
 

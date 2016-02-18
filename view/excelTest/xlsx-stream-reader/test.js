@@ -3,7 +3,7 @@
  */
 const XlsxStreamReader = require("./lib/xlsx-stream-reader");
 var fs = require('fs');
-var fileName = "../testcase/case6-1kx2k.xlsx";
+var fileName = "../testcase/case8-2kx2k.xlsx";
 var title= "Loop on numbers";
 
 var workBookReader = new XlsxStreamReader();
