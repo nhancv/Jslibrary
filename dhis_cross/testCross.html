@@ -12,7 +12,8 @@
                 user = $("#user").val();
                 pass = $("#pass").val();
                 $.post("http://localhost:3000/", {api_url: api, user_name: user, password: pass}, function (data) {
-                    $("#res").html(data);
+                    console.log(data);
+//                    $("#res").html(data);
                 });
             });
         });
