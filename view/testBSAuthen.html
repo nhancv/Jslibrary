@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/jquery.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<script>
+    $.ajax
+    ({
+        type: "GET",
+        url: "https://play.dhis2.org/demo/api/me",
+        headers: {
+            "Authorization": "Basic " + btoa("admin" + ":" + "district")
+        },
+        success: function (data) {
+            console.log(data);
+        }
+    });
+</script>
+</body>
+</html>
