@@ -15,16 +15,36 @@
     mainApp.run(function($http) {
         $http.defaults.headers.common.Authorization = "Basic " + btoa("admin:district");
     });
-    mainApp.controller('studentController', function ($scope, $http) {
-        var req = {
-            method: 'GET',
-            url: 'https://play.dhis2.org/demo/api/me'
-        }
-        $http(req).then(function(data){
-            $scope.response = data;
-        }, function(error){
-            $scope.response = error;
-        });
+    mainApp.controller('studentController', function ($scope, DHIS2Service) {
+        DHIS2Service.getMe().then(
+                function(data){
+                    $scope.response = data;
+                },
+                function(error){
+                    $scope.response = error;
+                });
+    });
+    mainApp.factory('DHIS2Service', function ($http, $q) {
+        return {
+            getMe: function() {
+                var req = {
+                    method: 'GET',
+                    url: 'https://play.dhis2.org/demo/api/me'
+                }
+                return $http(req).then(function(response){
+                    if (typeof response.data === 'object') {
+                        return response.data;
+                    } else {
+                        // invalid response
+                        return $q.reject(response.data);
+                    }
+                }, function(error){
+                    // something went wrong
+                    return $q.reject(error.data);
+                });
+
+            }
+        };
     });
 </script>
 </body>
