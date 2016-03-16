@@ -7,10 +7,25 @@
 </head>
 <body>
 
-<div ng-app="">
-    <p>Enter your Name: <input type="text" ng-model="name"></p>
-    <p>Hello <span ng-bind="name"></span>!</p>
+<div ng-app="mainApp" ng-controller="studentController">
+    {{response}}
 </div>
-
+<script>
+    var mainApp = angular.module("mainApp", []);
+    mainApp.controller('studentController', function ($scope, $http) {
+        var req = {
+            method: 'GET',
+            url: 'https://play.dhis2.org/demo/api/me',
+            headers: {
+                'Authorization': "Basic " + btoa("admin:district")
+            }
+        }
+        $http(req).then(function(data){
+            $scope.response = data;
+        }, function(error){
+            $scope.response = error;
+        });
+    });
+</script>
 </body>
 </html>
