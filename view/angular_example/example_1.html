@@ -18,6 +18,7 @@
     mainApp.controller('studentController', function ($scope, DHIS2Service) {
         DHIS2Service.getMe().then(
                 function (data) {
+                    console.log(data);
                     $scope.response = data;
                 },
                 function (error) {
@@ -26,6 +27,9 @@
                 function (update) {
                     $scope.response = update;
                 }
+        ).then(DHIS2Service.getMe().then(function (data) {
+                    console.log(data);
+                })
         );
     });
     mainApp.factory('DHIS2Service', function ($http, $q) {
