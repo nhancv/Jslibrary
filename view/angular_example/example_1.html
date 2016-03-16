@@ -12,13 +12,13 @@
 </div>
 <script>
     var mainApp = angular.module("mainApp", []);
+    mainApp.run(function($http) {
+        $http.defaults.headers.common.Authorization = "Basic " + btoa("admin:district");
+    });
     mainApp.controller('studentController', function ($scope, $http) {
         var req = {
             method: 'GET',
-            url: 'https://play.dhis2.org/demo/api/me',
-            headers: {
-                'Authorization': "Basic " + btoa("admin:district")
-            }
+            url: 'https://play.dhis2.org/demo/api/me'
         }
         $http(req).then(function(data){
             $scope.response = data;
