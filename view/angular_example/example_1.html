@@ -15,7 +15,16 @@
     mainApp.run(function ($http) {
         $http.defaults.headers.common.Authorization = "Basic " + btoa("admin:district");
     });
-    mainApp.controller('studentController', function ($scope, DHIS2Service) {
+    mainApp.controller('studentController', function ($scope, DHIS2Service, $q) {
+        //call multi promise async
+        var promiseArrs = [];
+        promiseArrs.push(DHIS2Service.getMe(), DHIS2Service.getMe());
+        $q.all(promiseArrs).then(function (values) {
+            console.log(values[0]);
+            console.log(values[1]);
+        });
+
+        //chaining call promise sync
         DHIS2Service.getMe().then(
                 function (data) {
                     console.log(data);
@@ -31,6 +40,8 @@
                     console.log(data);
                 })
         );
+
+
     });
     mainApp.factory('DHIS2Service', function ($http, $q) {
         return {
