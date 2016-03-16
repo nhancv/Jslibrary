@@ -12,37 +12,45 @@
 </div>
 <script>
     var mainApp = angular.module("mainApp", []);
-    mainApp.run(function($http) {
+    mainApp.run(function ($http) {
         $http.defaults.headers.common.Authorization = "Basic " + btoa("admin:district");
     });
     mainApp.controller('studentController', function ($scope, DHIS2Service) {
         DHIS2Service.getMe().then(
-                function(data){
+                function (data) {
                     $scope.response = data;
                 },
-                function(error){
+                function (error) {
                     $scope.response = error;
-                });
+                },
+                function (update) {
+                    $scope.response = update;
+                }
+        );
     });
     mainApp.factory('DHIS2Service', function ($http, $q) {
         return {
-            getMe: function() {
+            getMe: function () {
+                var defer = $q.defer();
                 var req = {
                     method: 'GET',
                     url: 'https://play.dhis2.org/demo/api/me'
-                }
-                return $http(req).then(function(response){
+                };
+                setTimeout(function () {
+                    defer.notify("inprogress....");
+                }, 0);
+                $http(req).then(function (response) {
                     if (typeof response.data === 'object') {
-                        return response.data;
+                        defer.resolve(response.data);
                     } else {
                         // invalid response
-                        return $q.reject(response.data);
+                        defer.reject(response.data);
                     }
-                }, function(error){
+                }, function (error) {
                     // something went wrong
-                    return $q.reject(error.data);
+                    defer.reject(error);
                 });
-
+                return defer.promise;
             }
         };
     });
