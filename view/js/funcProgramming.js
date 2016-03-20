@@ -22,6 +22,6 @@ var Person = function(){
 };
 
 
-var person = new Person().init("black");
-console.log(person.getHair());
+var hair = new Person().init("black").getHair();
+console.log(hair);
 
