@@ -2,26 +2,23 @@
  * Created by nhancao on 3/20/16.
  */
 
-var Person = function(){
-    //private properties
-    var hair;
-
-    //public method
-    this.getHair=function(){
-        return hair;
-    };
-    this.setHair=function(value){
-        hair = value;
-    };
+var Person = (function(){
+    //constructor
+    var Person = function (){
+        this.hair = "black";
+    }
 
     Person.prototype.init = function(hair){
-        this.setHair(hair);
+        this.hair = hair;
         return this;
     }
 
-};
+    return Person;
+}());
 
 
-var hair = new Person().init("black").getHair();
-console.log(hair);
+
+
+var person = new Person();
+console.log(person.init("black").hair);
 
