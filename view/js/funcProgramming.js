@@ -7,10 +7,10 @@ var Person = function () {
     var _hair = "black";
 
     //public method;
-    this.setHair = function (value) {
+    this.setHair = function setHair(value) {
         _hair = value;
     };
-    this.getHair = function () {
+    this.getHair = function getHair() {
         return _hair;
     };
     //get arguments inject to constructor
