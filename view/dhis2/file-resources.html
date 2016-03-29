@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.js"></script>
+</head>
+<body>
+https://play.dhis2.org/demo/api/fileResources
+<input id="file" type="file"/>
+<script>
+    $("document").ready(function () {
+        $('#file').change(function (event) {
+            console.log(event);
+            uploadFile(jQuery('#file')[0].files[0]);
+        });
+    });
+
+    function uploadFile(file) {
+        var form_data = new FormData();
+        form_data.append('file', file);
+        console.log(form_data);
+        $.ajax({
+                    type: 'POST',
+                    url: "https://play.dhis2.org/demo/api/fileResources",
+                    headers: {
+                        "Authorization": "Basic " + btoa("admin:district")
+                    },
+                    data: form_data,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                })
+                .done(function (data) {
+                    console.log(data);
+                });
+    }
+</script>
+</body>
+</html>
