@@ -23,10 +23,11 @@ https://play.dhis2.org/demo/api/fileResources
         form_data.append('external', false);
         form_data.append('upload', file);
         form_data.append('url', 'http://');
+        form_data.append('apiCall', true);
         console.log(form_data);
         $.ajax({
                     type: 'POST',
-                    url: "https://play.dhis2.org/demo/dhis-web-reporting/saveDocument.action",
+                    url: "http://dhis2.com:8085/dhis/dhis-web-reporting/saveDocument.action",
                     headers: {
                         "Authorization": "Basic " + btoa("admin:district")
                     },
@@ -36,6 +37,7 @@ https://play.dhis2.org/demo/api/fileResources
                     processData: false,
                     success: function(data) {
                         console.log(data);
+                        console.log(JSON.parse(data.message));
                     },
                     error: function(error) {
                         console.log(error);
