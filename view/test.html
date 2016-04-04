@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/jquery.js"></script>
 </head>
 <body>
-    <a onclick="clickMe()" href="javascript:" > test </a>
-
+<a onclick="clickMe(this.name)" name = "id's here" href="javascript:"> test </a>
 <script>
-    function clickMe(){
-        alert('click me');
+    function clickMe(obj) {
+        console.log(obj);
     }
-    $(document).ready(function() {
-    });
 </script>
 </body>
 </html>
