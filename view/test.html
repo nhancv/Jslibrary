@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="js/jquery.js"></script>
 </head>
 <body>
-<a onclick="clickMe(this.name)" name = "id's here" href="javascript:"> test </a>
+<table>
+    <tr id="inject">
+    </tr>
+</table>
 <script>
     function clickMe(obj) {
-        console.log(obj);
+        console.log(obj.innerHTML);
     }
+    var table = "<td id='abc'>"+'<a href="javascript:" onclick="clickMe(this)" >'+"KERALA"+"</a>"+"</td>";
+    $(document).ready(function(){
+        $('#inject').append(table);
+    });
+
 </script>
 </body>
 </html>
