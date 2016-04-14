@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/angular-1.5.0/angular.js"></script>
+</head>
+<body>
+
+<div ng-app="mainApp" ng-controller="studentController">
+    {{response}}
+</div>
+<script>
+    var mainApp = angular.module("mainApp", []);
+    mainApp.run(function ($http) {
+        $http.defaults.headers.common.Authorization = "Basic " + btoa("admin:district");
+    });
+    mainApp.controller('studentController', function ($scope, DHIS2Service, $q) {
+        //call multi promise async
+        var promiseArrs = [];
+        promiseArrs.push(DHIS2Service.getMe(), DHIS2Service.getMe());
+        $q.all(promiseArrs).then(function (values) {
+            console.log(values[0]);
+            console.log(values[1]);
+        });
+
+        //chaining call promise sync
+        DHIS2Service.getMe().then(
+                function (data) {
+                    console.log(data);
+                    $scope.response = data;
+                },
+                function (error) {
+                    $scope.response = error;
+                },
+                function (update) {
+                    $scope.response = update;
+                }
+        ).then(DHIS2Service.getMe().then(function (data) {
+                    console.log(data);
+                })
+        );
+
+
+    });
+    mainApp.factory('DHIS2Service', function ($http, $q) {
+        return {
+            getMe: function () {
+                var defer = $q.defer();
+                var req = {
+                    method: 'GET',
+                    url: 'https://play.dhis2.org/demo/api/me'
+                };
+                setTimeout(function () {
+                    defer.notify("inprogress....");
+                }, 0);
+                $http(req).then(function (response) {
+                    if (typeof response.data === 'object') {
+                        defer.resolve(response.data);
+                    } else {
+                        // invalid response
+                        defer.reject(response.data);
+                    }
+                }, function (error) {
+                    // something went wrong
+                    defer.reject(error);
+                });
+                return defer.promise;
+            }
+        };
+    });
+</script>
+</body>
+</html>
