@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+<script>
+
+    $.getJSON("../model/localdb/data", function (jsonData) {
+        var jsonNew = sortWithFilterArr(filterArr,jsonData);
+        console.log(jsonNew);
+    });
+
+    var filterArr=["nlyO8gj4uHd"];
+    function sortWithFilterArr(filterArr, jsonData){
+        var resFilter = {};
+        var resTemp=[];
+        var jsonDataElementArr = jsonData.dataElements;
+        for(var i =0; i<filterArr.length; i++){
+            for(var j =0; j<jsonDataElementArr.length; j++){
+                if(filterArr[i]==jsonDataElementArr[j].id){
+                    resFilter[filterArr[i]]=1;
+                    resTemp.push(jsonDataElementArr[j]);
+                    break;
+                }
+            }
+        }
+        for(var i =0; i<jsonDataElementArr.length; i++){
+            if(!resFilter.hasOwnProperty(jsonDataElementArr[i].id)){
+                resTemp.push(jsonDataElementArr[i]);
+            }
+        }
+        jsonData.dataElements = resTemp;
+        return jsonData;
+    }
+
+</script>
+
+
+</body>
+</html>
